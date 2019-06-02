@@ -12,7 +12,7 @@ client = gspread.authorize(creds)
 sheet = client.open("likes").sheet1  # Open the spreadhseet
 data = sheet.get_all_records()  # Get a list of all records
 col = sheet.col_values(3)
-random1 = random.randint(1, 174)
+random1 = random.randint(1, 1100)
 cell = sheet.cell(random1, 3).value
 
 
