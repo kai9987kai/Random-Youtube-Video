@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "links": [
+    {
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Example YouTube video",
+      "tags": ["example"],
+      "favorite": false
+    },
+    "https://youtu.be/jNQXAC9IVRw"
+  ]
+}
