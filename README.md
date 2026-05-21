@@ -16,7 +16,7 @@ python RandomYouTubeVideos.py
 - Pick a random link without hard-coded row limits.
 - Choose shuffle modes: discovery, least-opened, surprise, favorites, or any.
 - Import links from clipboard text or files (`.txt`, `.csv`, `.md`, `.json`).
-- Import the researched starter pack from `starter_videos.json`.
+- Import the researched 2,000-link starter pack from `starter_videos.json`.
 - Export the current local library to JSON.
 - Track open count and last opened time.
 - Sort by table columns and search across title, channel, tags, and URL.
@@ -27,7 +27,7 @@ python RandomYouTubeVideos.py
 
 ## Local Data
 
-Personal links are saved in `links.json` and ignored by Git. This workspace has been seeded with a larger local starter library. A portable example format is available in `links.example.json`.
+Personal links are saved in `links.json` and ignored by Git. This workspace has been seeded with 2,000 local YouTube links. A portable example format is available in `links.example.json`.
 
 The app accepts either the full JSON export format or a simple JSON array of URL strings when importing.
 

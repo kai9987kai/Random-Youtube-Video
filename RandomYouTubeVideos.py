@@ -27,6 +27,7 @@ DATA_FILE = APP_DIR / "links.json"
 STARTER_PACK_FILE = APP_DIR / "starter_videos.json"
 BACKUP_DIR = APP_DIR / "backups"
 ICON_FILE = APP_DIR / "favicon.ico"
+LOGO_FILE = APP_DIR / "app_logo.png"
 SUPPORTED_SCHEMES = {"http", "https"}
 BACKUP_LIMIT = 20
 SHUFFLE_MODES = ("Discovery", "Least opened", "Surprise", "Favorites", "Any")
@@ -428,6 +429,16 @@ class RandomLinkApp:
                 self.root.iconbitmap(str(ICON_FILE))
             except tk.TclError:
                 pass
+        self.logo_image: tk.PhotoImage | None = None
+        self.logo_thumb: tk.PhotoImage | None = None
+        if LOGO_FILE.exists():
+            try:
+                self.logo_image = tk.PhotoImage(file=str(LOGO_FILE))
+                self.logo_thumb = self.logo_image.subsample(8, 8)
+                self.root.iconphoto(True, self.logo_image)
+            except tk.TclError:
+                self.logo_image = None
+                self.logo_thumb = None
 
         style = ttk.Style(self.root)
         style.configure("Current.TLabel", font=("Segoe UI", 13, "bold"))
@@ -447,16 +458,24 @@ class RandomLinkApp:
         picker.grid(row=0, column=0, sticky="ew")
         picker.columnconfigure(0, weight=1)
 
+        if self.logo_thumb:
+            logo_label = ttk.Label(picker, image=self.logo_thumb)
+            logo_label.grid(row=0, column=0, rowspan=2, sticky="nw", padx=(0, 10))
+            text_column = 1
+        else:
+            text_column = 0
+        picker.columnconfigure(text_column, weight=1)
+
         title_label = ttk.Label(
             picker,
             textvariable=self.current_title_var,
             style="Current.TLabel",
             wraplength=800,
         )
-        title_label.grid(row=0, column=0, columnspan=5, sticky="ew", pady=(0, 4))
+        title_label.grid(row=0, column=text_column, columnspan=5, sticky="ew", pady=(0, 4))
 
         url_label = ttk.Label(picker, textvariable=self.current_url_var, wraplength=800)
-        url_label.grid(row=1, column=0, columnspan=5, sticky="ew", pady=(0, 8))
+        url_label.grid(row=1, column=text_column, columnspan=5, sticky="ew", pady=(0, 8))
 
         self.open_button = ttk.Button(picker, text="Open", command=self.open_current)
         self.open_button.grid(row=2, column=0, sticky="w")
