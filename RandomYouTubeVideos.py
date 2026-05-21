@@ -846,6 +846,7 @@ class RandomLinkApp:
             return
 
         title = clean_text(self.title_var.get()) or infer_title(url)
+        channel = clean_text(self.channel_var.get())
         tags = parse_tags(self.tags_var.get())
         selected_id = self.selected_id()
         next_links = copy.deepcopy(self.links)
@@ -859,13 +860,14 @@ class RandomLinkApp:
         if selected:
             selected.url = url
             selected.title = title
+            selected.channel = channel
             selected.tags = tags
             link = selected
         else:
-            link = create_link(url, title, tags)
+            link = create_link(url, title, tags, channel)
             next_links.append(link)
 
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="save"):
             return
         self.refresh_view()
         self.select_link(link.id)
@@ -880,7 +882,7 @@ class RandomLinkApp:
             return
 
         next_links = [copy.deepcopy(item) for item in self.links if item.id != link.id]
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="delete"):
             return
         if self.current_id == link.id:
             self.show_current(None)
@@ -897,12 +899,9 @@ class RandomLinkApp:
             self.update_actions()
             return
 
-        unopened = [link for link in candidates if link.open_count == 0]
-        pool = unopened or candidates
-        if self.current_id and len(pool) > 1:
-            pool = [link for link in pool if link.id != self.current_id] or pool
-
-        link = random.choice(pool)
+        link = choose_random_link(candidates, self.current_id, self.shuffle_mode_var.get())
+        if not link:
+            return
         self.show_current(link)
         self.select_link(link.id)
         self.set_status(f"Picked: {link.title}")
@@ -924,7 +923,7 @@ class RandomLinkApp:
             return
         saved_link.open_count += 1
         saved_link.last_opened = utc_now()
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="open count"):
             return
         self.refresh_view()
         self.select_link(saved_link.id)
@@ -950,7 +949,7 @@ class RandomLinkApp:
         if not saved_link:
             return
         saved_link.favorite = self.favorite_var.get()
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="favorite change"):
             return
         self.refresh_view()
         self.select_link(saved_link.id)
@@ -963,6 +962,14 @@ class RandomLinkApp:
             messagebox.showinfo("Clipboard empty", "The clipboard does not contain text.")
             return
         self.add_urls(extract_urls(text), "clipboard")
+
+    def import_starter_pack(self) -> None:
+        try:
+            starter_links = load_links(STARTER_PACK_FILE, strict=False)
+        except (OSError, ValueError) as exc:
+            messagebox.showerror("Starter pack unavailable", str(exc))
+            return
+        self.merge_links(starter_links, source=STARTER_PACK_FILE.name)
 
     def import_file(self) -> None:
         filename = filedialog.askopenfilename(
@@ -981,7 +988,7 @@ class RandomLinkApp:
         try:
             if path.suffix.lower() == ".json":
                 imported_links = load_links(path, strict=False)
-                self.merge_links(imported_links)
+                self.merge_links(imported_links, source=path.name)
             else:
                 text = path.read_text(encoding="utf-8", errors="replace")
                 self.add_urls(extract_urls(text), path.name)
@@ -1007,12 +1014,18 @@ class RandomLinkApp:
     def open_data_folder(self) -> None:
         webbrowser.open(DATA_FILE.parent.as_uri())
 
+    def open_backups_folder(self) -> None:
+        BACKUP_DIR.mkdir(exist_ok=True)
+        webbrowser.open(BACKUP_DIR.as_uri())
+
     def add_urls(self, urls: list[str], source: str) -> None:
         added: list[VideoLink] = []
         next_links = copy.deepcopy(self.links)
         existing = {link.url.lower() for link in next_links}
+        duplicate_count = 0
         for url in urls:
             if url.lower() in existing:
+                duplicate_count += 1
                 continue
             link = create_link(url, tags=[source] if source not in {"clipboard"} else None)
             next_links.append(link)
@@ -1023,21 +1036,23 @@ class RandomLinkApp:
             messagebox.showinfo("No new links", "No new valid links were found.")
             return
 
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="import"):
             return
         self.refresh_view()
         self.select_link(added[-1].id)
         self.show_current(added[-1])
-        self.set_status(f"Imported {len(added)} new link(s) from {source}.")
+        self.set_status(f"Imported {len(added)} new link(s) from {source}; skipped {duplicate_count} duplicate(s).")
 
-    def merge_links(self, imported_links: list[VideoLink]) -> None:
+    def merge_links(self, imported_links: list[VideoLink], source: str = "file") -> None:
         added: list[VideoLink] = []
         next_links = copy.deepcopy(self.links)
         existing_urls = {link.url.lower() for link in next_links}
         existing_ids = {link.id for link in next_links}
+        duplicate_count = 0
 
         for link in imported_links:
             if link.url.lower() in existing_urls:
+                duplicate_count += 1
                 continue
             imported_link = copy.deepcopy(link)
             while imported_link.id in existing_ids:
@@ -1051,12 +1066,54 @@ class RandomLinkApp:
             messagebox.showinfo("No new links", "No new links were imported.")
             return
 
-        if not self.persist_links(next_links):
+        if not self.persist_links(next_links, undo_label="import"):
             return
         self.refresh_view()
         self.select_link(added[-1].id)
         self.show_current(added[-1])
-        self.set_status(f"Imported {len(added)} new link(s).")
+        self.set_status(f"Imported {len(added)} new link(s) from {source}; skipped {duplicate_count} duplicate(s).")
+
+    def enrich_selected(self) -> None:
+        link = self.selected_link() or self.current_link()
+        if not link:
+            return
+        self.enrich_links([link.id])
+
+    def enrich_shown(self) -> None:
+        ids = [link.id for link in self.filtered_links()]
+        if not ids:
+            messagebox.showinfo("No links", "No visible links to enrich.")
+            return
+        self.enrich_links(ids)
+
+    def enrich_links(self, link_ids: list[str]) -> None:
+        next_links = copy.deepcopy(self.links)
+        updated = 0
+        failed = 0
+        target_ids = set(link_ids)
+        for link in next_links:
+            if link.id not in target_ids:
+                continue
+            metadata = fetch_youtube_metadata(link.url)
+            if not metadata:
+                failed += 1
+                continue
+            if metadata.get("title"):
+                link.title = metadata["title"]
+            if metadata.get("channel"):
+                link.channel = metadata["channel"]
+            updated += 1
+
+        if not updated:
+            self.set_status(f"No metadata updated; {failed} link(s) had no oEmbed result.")
+            return
+        if not self.persist_links(next_links, undo_label="metadata enrichment"):
+            return
+        self.refresh_view()
+        if self.current_id:
+            current = self.current_link()
+            self.show_current(current)
+        self.set_status(f"Enriched {updated} link(s); {failed} skipped.")
 
 
 def main() -> None:
