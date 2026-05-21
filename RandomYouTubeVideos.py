@@ -6,13 +6,17 @@ import copy
 import json
 import random
 import re
+import shutil
 import uuid
 import webbrowser
+from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import parse_qs, urlsplit
+from urllib.error import URLError
+from urllib.parse import parse_qs, urlencode, urlsplit
+from urllib.request import Request, urlopen
 
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -20,8 +24,12 @@ from tkinter import filedialog, messagebox, ttk
 
 APP_DIR = Path(__file__).resolve().parent
 DATA_FILE = APP_DIR / "links.json"
+STARTER_PACK_FILE = APP_DIR / "starter_videos.json"
+BACKUP_DIR = APP_DIR / "backups"
 ICON_FILE = APP_DIR / "favicon.ico"
 SUPPORTED_SCHEMES = {"http", "https"}
+BACKUP_LIMIT = 20
+SHUFFLE_MODES = ("Discovery", "Least opened", "Surprise", "Favorites", "Any")
 URL_PATTERN = re.compile(
     r"(?:https?://|www\.)[^\s<>'\"]+|(?:youtube\.com|youtu\.be)/[^\s<>'\"]+",
     re.IGNORECASE,
@@ -122,6 +130,7 @@ class VideoLink:
     id: str
     url: str
     title: str
+    channel: str = ""
     tags: list[str] = field(default_factory=list)
     favorite: bool = False
     added_at: str = field(default_factory=utc_now)
@@ -147,6 +156,7 @@ class VideoLink:
             id=str(raw.get("id") or uuid.uuid4().hex),
             url=url,
             title=title,
+            channel=clean_text(str(raw.get("channel") or raw.get("author") or "")),
             tags=parse_tags(raw.get("tags")),
             favorite=bool(raw.get("favorite", False)),
             added_at=str(raw.get("added_at") or utc_now()),
@@ -155,12 +165,18 @@ class VideoLink:
         )
 
 
-def create_link(url: str, title: str = "", tags: str | Iterable[str] | None = None) -> VideoLink:
+def create_link(
+    url: str,
+    title: str = "",
+    tags: str | Iterable[str] | None = None,
+    channel: str = "",
+) -> VideoLink:
     normalized = normalize_url(url)
     return VideoLink(
         id=uuid.uuid4().hex,
         url=normalized,
         title=clean_text(title) or infer_title(normalized),
+        channel=clean_text(channel),
         tags=parse_tags(tags),
     )
 
@@ -206,7 +222,30 @@ def load_links(path: Path = DATA_FILE, *, strict: bool = True) -> list[VideoLink
     return links
 
 
-def save_links(links: list[VideoLink], path: Path = DATA_FILE) -> None:
+def backup_path_for(path: Path, timestamp: str | None = None) -> Path:
+    stamp = timestamp or utc_now().replace(":", "").replace("-", "")
+    return BACKUP_DIR / f"{path.stem}-{stamp}{path.suffix}.bak"
+
+
+def create_backup(path: Path = DATA_FILE) -> Path | None:
+    if not path.exists() or path.stat().st_size == 0:
+        return None
+
+    BACKUP_DIR.mkdir(exist_ok=True)
+    backup_path = backup_path_for(path)
+    shutil.copy2(path, backup_path)
+
+    backups = sorted(
+        BACKUP_DIR.glob(f"{path.stem}-*{path.suffix}.bak"),
+        key=lambda item: item.stat().st_mtime,
+        reverse=True,
+    )
+    for old_backup in backups[BACKUP_LIMIT:]:
+        old_backup.unlink(missing_ok=True)
+    return backup_path
+
+
+def save_links(links: list[VideoLink], path: Path = DATA_FILE, *, keep_backup: bool = False) -> None:
     payload = {
         "version": 1,
         "updated_at": utc_now(),
@@ -216,6 +255,8 @@ def save_links(links: list[VideoLink], path: Path = DATA_FILE) -> None:
     with temp_path.open("w", encoding="utf-8") as file:
         json.dump(payload, file, ensure_ascii=False, indent=2)
         file.write("\n")
+    if keep_backup:
+        create_backup(path)
     temp_path.replace(path)
 
 
@@ -234,6 +275,101 @@ def extract_urls(text: str) -> list[str]:
     return urls
 
 
+def filter_links(links: list[VideoLink], query: str = "", favorites_only: bool = False) -> list[VideoLink]:
+    filtered = [link for link in links if not favorites_only or link.favorite]
+    tokens = query.strip().lower().split()
+    if not tokens:
+        return filtered
+    return [
+        link
+        for link in filtered
+        if all(
+            token in f"{link.title} {link.channel} {link.url} {' '.join(link.tags)}".lower()
+            for token in tokens
+        )
+    ]
+
+
+def sort_links(links: list[VideoLink], column: str, descending: bool = False) -> list[VideoLink]:
+    def key(link: VideoLink) -> object:
+        if column == "title":
+            return link.title.lower()
+        if column == "channel":
+            return link.channel.lower()
+        if column == "tags":
+            return ", ".join(link.tags).lower()
+        if column == "opens":
+            return link.open_count
+        if column == "last_opened":
+            return link.last_opened or ""
+        if column == "url":
+            return link.url.lower()
+        return link.title.lower()
+
+    return sorted(links, key=key, reverse=descending)
+
+
+def library_stats(links: list[VideoLink], shown: int | None = None) -> str:
+    total = len(links)
+    favorites = sum(1 for link in links if link.favorite)
+    unopened = sum(1 for link in links if link.open_count == 0)
+    tag_counts = Counter(tag for link in links for tag in link.tags)
+    top_tags = ", ".join(tag for tag, _count in tag_counts.most_common(4)) or "no tags"
+    shown_text = f"{shown} shown / " if shown is not None else ""
+    return f"{shown_text}{total} saved | {favorites} favorites | {unopened} unopened | top tags: {top_tags}"
+
+
+def choose_random_link(
+    candidates: list[VideoLink],
+    current_id: str | None = None,
+    mode: str = "Discovery",
+) -> VideoLink | None:
+    if not candidates:
+        return None
+
+    pool = list(candidates)
+    if mode == "Favorites":
+        pool = [link for link in pool if link.favorite] or pool
+    elif mode == "Discovery":
+        unopened = [link for link in pool if link.open_count == 0]
+        if unopened:
+            pool = unopened
+        else:
+            min_open_count = min(link.open_count for link in pool)
+            pool = [link for link in pool if link.open_count == min_open_count]
+    elif mode == "Least opened":
+        min_open_count = min(link.open_count for link in pool)
+        pool = [link for link in pool if link.open_count == min_open_count]
+    elif mode == "Surprise":
+        if current_id and len(pool) > 1:
+            pool = [link for link in pool if link.id != current_id] or pool
+        weights = [(3 if link.favorite else 1) / (1 + link.open_count) for link in pool]
+        return random.choices(pool, weights=weights, k=1)[0]
+
+    if current_id and len(pool) > 1:
+        pool = [link for link in pool if link.id != current_id] or pool
+    return random.choice(pool)
+
+
+def fetch_youtube_metadata(url: str, timeout: int = 8) -> dict[str, str]:
+    if not youtube_video_id(url):
+        return {}
+
+    endpoint = "https://www.youtube.com/oembed?" + urlencode({"url": url, "format": "json"})
+    request = Request(endpoint, headers={"User-Agent": "RandomYouTubeLinkPicker/1.0"})
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (OSError, URLError, json.JSONDecodeError):
+        return {}
+
+    return {
+        "title": clean_text(str(payload.get("title", ""))),
+        "channel": clean_text(str(payload.get("author_name", ""))),
+        "thumbnail_url": clean_text(str(payload.get("thumbnail_url", ""))),
+    }
+
+
 class RandomLinkApp:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
@@ -246,12 +382,20 @@ class RandomLinkApp:
         self.current_url_var = tk.StringVar(value="Add links or import from clipboard to begin.")
         self.url_var = tk.StringVar()
         self.title_var = tk.StringVar()
+        self.channel_var = tk.StringVar()
         self.tags_var = tk.StringVar()
         self.search_var = tk.StringVar()
         self.status_var = tk.StringVar()
+        self.stats_var = tk.StringVar()
+        self.shuffle_mode_var = tk.StringVar(value=SHUFFLE_MODES[0])
         self.favorite_var = tk.BooleanVar(value=False)
         self.only_favorites_var = tk.BooleanVar(value=False)
         self.always_on_top_var = tk.BooleanVar(value=True)
+        self.search_after_id: str | None = None
+        self.sort_column = "title"
+        self.sort_descending = False
+        self.undo_links: list[VideoLink] | None = None
+        self.undo_label = ""
 
         self._load_data()
         self._build_ui()
@@ -276,7 +420,7 @@ class RandomLinkApp:
 
     def _build_ui(self) -> None:
         self.root.title("Random YouTube Link Picker")
-        self.root.minsize(920, 620)
+        self.root.minsize(1040, 700)
         self.root.attributes("-topmost", self.always_on_top_var.get())
 
         if ICON_FILE.exists():
@@ -318,15 +462,24 @@ class RandomLinkApp:
         self.open_button.grid(row=2, column=0, sticky="w")
         self.random_button = ttk.Button(picker, text="Random", command=self.pick_random)
         self.random_button.grid(row=2, column=1, padx=(8, 0), sticky="w")
+        ttk.Label(picker, text="Mode").grid(row=2, column=2, padx=(12, 6), sticky="w")
+        self.shuffle_combo = ttk.Combobox(
+            picker,
+            textvariable=self.shuffle_mode_var,
+            values=SHUFFLE_MODES,
+            state="readonly",
+            width=14,
+        )
+        self.shuffle_combo.grid(row=2, column=3, sticky="w")
         self.copy_button = ttk.Button(picker, text="Copy", command=self.copy_current)
-        self.copy_button.grid(row=2, column=2, padx=(8, 0), sticky="w")
+        self.copy_button.grid(row=2, column=4, padx=(8, 0), sticky="w")
         self.favorite_check = ttk.Checkbutton(
             picker,
             text="Favorite",
             variable=self.favorite_var,
             command=self.toggle_current_favorite,
         )
-        self.favorite_check.grid(row=2, column=3, padx=(12, 0), sticky="w")
+        self.favorite_check.grid(row=2, column=5, padx=(12, 0), sticky="w")
 
         form = ttk.LabelFrame(main, text="Add or edit link", padding=10)
         form.grid(row=1, column=0, sticky="ew", pady=(10, 0))
@@ -339,17 +492,21 @@ class RandomLinkApp:
 
         ttk.Label(form, text="Title").grid(row=1, column=0, sticky="w", padx=(0, 8), pady=(8, 0))
         ttk.Entry(form, textvariable=self.title_var).grid(row=1, column=1, sticky="ew", pady=(8, 0))
-        ttk.Label(form, text="Tags").grid(row=1, column=2, sticky="w", padx=(12, 8), pady=(8, 0))
-        ttk.Entry(form, textvariable=self.tags_var).grid(row=1, column=3, sticky="ew", pady=(8, 0))
+        ttk.Label(form, text="Channel").grid(row=1, column=2, sticky="w", padx=(12, 8), pady=(8, 0))
+        ttk.Entry(form, textvariable=self.channel_var).grid(row=1, column=3, sticky="ew", pady=(8, 0))
+        ttk.Label(form, text="Tags").grid(row=2, column=0, sticky="w", padx=(0, 8), pady=(8, 0))
+        ttk.Entry(form, textvariable=self.tags_var).grid(row=2, column=1, columnspan=3, sticky="ew", pady=(8, 0))
 
         button_row = ttk.Frame(form)
-        button_row.grid(row=2, column=0, columnspan=4, sticky="ew", pady=(10, 0))
+        button_row.grid(row=3, column=0, columnspan=4, sticky="ew", pady=(10, 0))
         self.save_button = ttk.Button(button_row, text="Save link", command=self.save_form)
         self.save_button.grid(row=0, column=0, sticky="w")
         self.clear_button = ttk.Button(button_row, text="Clear", command=self.clear_form)
         self.clear_button.grid(row=0, column=1, padx=(8, 0), sticky="w")
         self.delete_button = ttk.Button(button_row, text="Delete selected", command=self.delete_selected)
         self.delete_button.grid(row=0, column=2, padx=(8, 0), sticky="w")
+        self.enrich_button = ttk.Button(button_row, text="Enrich selected", command=self.enrich_selected)
+        self.enrich_button.grid(row=0, column=3, padx=(8, 0), sticky="w")
 
         tools = ttk.Frame(main)
         tools.grid(row=2, column=0, sticky="ew", pady=(10, 0))
@@ -371,13 +528,22 @@ class RandomLinkApp:
             command=self.toggle_topmost,
         ).grid(row=0, column=3, padx=(8, 0), sticky="w")
         ttk.Button(tools, text="Import clipboard", command=self.import_clipboard).grid(
-            row=0, column=4, padx=(8, 0), sticky="e"
+            row=1, column=1, pady=(8, 0), sticky="w"
+        )
+        ttk.Button(tools, text="Starter pack", command=self.import_starter_pack).grid(
+            row=1, column=2, padx=(8, 0), pady=(8, 0), sticky="w"
         )
         ttk.Button(tools, text="Import file", command=self.import_file).grid(
-            row=0, column=5, padx=(8, 0), sticky="e"
+            row=1, column=3, padx=(8, 0), pady=(8, 0), sticky="w"
+        )
+        ttk.Button(tools, text="Enrich shown", command=self.enrich_shown).grid(
+            row=1, column=4, padx=(8, 0), pady=(8, 0), sticky="w"
+        )
+        ttk.Button(tools, text="Backup", command=self.backup_now).grid(
+            row=1, column=5, padx=(8, 0), pady=(8, 0), sticky="w"
         )
         ttk.Button(tools, text="Export", command=self.export_links).grid(
-            row=0, column=6, padx=(8, 0), sticky="e"
+            row=1, column=6, padx=(8, 0), pady=(8, 0), sticky="w"
         )
 
         table_frame = ttk.Frame(main)
@@ -385,18 +551,23 @@ class RandomLinkApp:
         table_frame.columnconfigure(0, weight=1)
         table_frame.rowconfigure(0, weight=1)
 
-        columns = ("title", "tags", "opens", "last_opened", "url")
+        columns = ("title", "channel", "tags", "opens", "last_opened", "url")
         self.tree = ttk.Treeview(table_frame, columns=columns, show="headings", selectmode="browse")
-        self.tree.heading("title", text="Title")
-        self.tree.heading("tags", text="Tags")
-        self.tree.heading("opens", text="Opens")
-        self.tree.heading("last_opened", text="Last opened")
-        self.tree.heading("url", text="URL")
+        for column, label in (
+            ("title", "Title"),
+            ("channel", "Channel"),
+            ("tags", "Tags"),
+            ("opens", "Opens"),
+            ("last_opened", "Last opened"),
+            ("url", "URL"),
+        ):
+            self.tree.heading(column, text=label, command=lambda value=column: self.sort_by(value))
         self.tree.column("title", width=260, minwidth=160)
+        self.tree.column("channel", width=160, minwidth=100)
         self.tree.column("tags", width=150, minwidth=90)
         self.tree.column("opens", width=70, minwidth=60, anchor="center")
         self.tree.column("last_opened", width=130, minwidth=100)
-        self.tree.column("url", width=360, minwidth=200)
+        self.tree.column("url", width=320, minwidth=200)
         self.tree.grid(row=0, column=0, sticky="nsew")
 
         y_scroll = ttk.Scrollbar(table_frame, orient="vertical", command=self.tree.yview)
@@ -405,25 +576,37 @@ class RandomLinkApp:
         x_scroll.grid(row=1, column=0, sticky="ew")
         self.tree.configure(yscrollcommand=y_scroll.set, xscrollcommand=x_scroll.set)
 
+        stats = ttk.Label(main, textvariable=self.stats_var, style="Status.TLabel")
+        stats.grid(row=4, column=0, sticky="ew", pady=(8, 0))
         status = ttk.Label(main, textvariable=self.status_var, style="Status.TLabel")
-        status.grid(row=4, column=0, sticky="ew", pady=(8, 0))
+        status.grid(row=5, column=0, sticky="ew")
 
     def _build_menu(self) -> None:
         menu = tk.Menu(self.root)
         file_menu = tk.Menu(menu, tearoff=False)
         file_menu.add_command(label="Import from clipboard", command=self.import_clipboard)
+        file_menu.add_command(label="Import starter pack", command=self.import_starter_pack)
         file_menu.add_command(label="Import from file...", command=self.import_file)
         file_menu.add_command(label="Export links...", command=self.export_links)
         file_menu.add_separator()
+        file_menu.add_command(label="Backup now", command=self.backup_now)
+        file_menu.add_command(label="Open backups folder", command=self.open_backups_folder)
         file_menu.add_command(label="Open data folder", command=self.open_data_folder)
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=self.root.destroy)
         menu.add_cascade(label="File", menu=file_menu)
 
+        edit_menu = tk.Menu(menu, tearoff=False)
+        edit_menu.add_command(label="Undo last library change", command=self.undo_last_change, accelerator="Ctrl+Z")
+        edit_menu.add_command(label="Clear form", command=self.clear_form, accelerator="Esc")
+        menu.add_cascade(label="Edit", menu=edit_menu)
+
         action_menu = tk.Menu(menu, tearoff=False)
         action_menu.add_command(label="Random", command=self.pick_random, accelerator="Ctrl+N")
         action_menu.add_command(label="Open current", command=self.open_current, accelerator="Ctrl+O")
-        action_menu.add_command(label="Copy current", command=self.copy_current, accelerator="Ctrl+C")
+        action_menu.add_command(label="Copy current", command=self.copy_current, accelerator="Ctrl+Shift+C")
+        action_menu.add_command(label="Enrich selected", command=self.enrich_selected)
+        action_menu.add_command(label="Enrich shown", command=self.enrich_shown)
         menu.add_cascade(label="Actions", menu=action_menu)
         self.root.configure(menu=menu)
 
@@ -431,11 +614,15 @@ class RandomLinkApp:
         self.tree.bind("<<TreeviewSelect>>", self.on_tree_select)
         self.tree.bind("<Double-1>", lambda _event: self.open_current())
         self.tree.bind("<Delete>", lambda _event: self.delete_selected())
-        self.search_var.trace_add("write", lambda *_args: self.refresh_view())
+        self.search_var.trace_add("write", lambda *_args: self.schedule_refresh())
         self.root.bind("<Control-n>", lambda _event: self.pick_random())
         self.root.bind("<Control-o>", lambda _event: self.open_current())
         self.root.bind("<Control-l>", lambda _event: self.focus_url())
         self.root.bind("<Control-f>", lambda _event: self.focus_search())
+        self.root.bind("<Control-z>", lambda _event: self.undo_last_change())
+        self.root.bind("<Control-Shift-C>", lambda _event: self.copy_current())
+        self.root.bind("<Escape>", lambda _event: self.clear_form())
+        self.root.bind("<Return>", self.handle_enter)
 
     def _after_startup(self) -> None:
         if self.load_error:
@@ -460,17 +647,53 @@ class RandomLinkApp:
         self.set_status(f"Cannot save until {DATA_FILE.name} is fixed.")
         return False
 
-    def persist_links(self, next_links: list[VideoLink]) -> bool:
+    def persist_links(
+        self,
+        next_links: list[VideoLink],
+        *,
+        undo_label: str = "library change",
+        record_undo: bool = True,
+    ) -> bool:
         if not self.ensure_writable():
             return False
+        previous_links = copy.deepcopy(self.links)
         try:
-            save_links(next_links, DATA_FILE)
+            save_links(next_links, DATA_FILE, keep_backup=True)
         except OSError as exc:
             messagebox.showerror("Could not save links", str(exc))
             self.set_status("Save failed. No local library changes were written.")
             return False
         self.links = next_links
+        if record_undo:
+            self.undo_links = previous_links
+            self.undo_label = undo_label
         return True
+
+    def undo_last_change(self) -> None:
+        if self.undo_links is None:
+            self.set_status("Nothing to undo.")
+            return
+        restored = copy.deepcopy(self.undo_links)
+        label = self.undo_label or "library change"
+        self.undo_links = None
+        self.undo_label = ""
+        if not self.persist_links(restored, record_undo=False):
+            return
+        self.show_current(None)
+        self.clear_form()
+        self.refresh_view()
+        self.set_status(f"Undid {label}.")
+
+    def backup_now(self) -> None:
+        try:
+            backup_path = create_backup(DATA_FILE)
+        except OSError as exc:
+            messagebox.showerror("Backup failed", str(exc))
+            return
+        if backup_path:
+            self.set_status(f"Backup created: {backup_path.name}")
+        else:
+            self.set_status("Nothing to back up yet.")
 
     def focus_url(self) -> None:
         self.url_entry.focus_set()
@@ -483,30 +706,30 @@ class RandomLinkApp:
     def toggle_topmost(self) -> None:
         self.root.attributes("-topmost", self.always_on_top_var.get())
 
+    def schedule_refresh(self) -> None:
+        if self.search_after_id:
+            self.root.after_cancel(self.search_after_id)
+        self.search_after_id = self.root.after(150, self.refresh_view)
+
     def filtered_links(self) -> list[VideoLink]:
-        links = self.links
-        if self.only_favorites_var.get():
-            links = [link for link in links if link.favorite]
+        links = filter_links(self.links, self.search_var.get(), self.only_favorites_var.get())
+        return sort_links(links, self.sort_column, self.sort_descending)
 
-        query = self.search_var.get().strip().lower()
-        if not query:
-            return links
-
-        tokens = query.split()
-        return [
-            link
-            for link in links
-            if all(
-                token in f"{link.title} {link.url} {' '.join(link.tags)}".lower()
-                for token in tokens
-            )
-        ]
+    def sort_by(self, column: str) -> None:
+        if self.sort_column == column:
+            self.sort_descending = not self.sort_descending
+        else:
+            self.sort_column = column
+            self.sort_descending = False
+        self.refresh_view()
 
     def refresh_view(self) -> None:
+        self.search_after_id = None
         selected = self.selected_id()
+        filtered = self.filtered_links()
         if hasattr(self, "tree"):
             self.tree.delete(*self.tree.get_children())
-            for link in self.filtered_links():
+            for link in filtered:
                 marker = "*" if link.favorite else ""
                 self.tree.insert(
                     "",
@@ -514,6 +737,7 @@ class RandomLinkApp:
                     iid=link.id,
                     values=(
                         f"{marker}{link.title}",
+                        link.channel,
                         ", ".join(link.tags),
                         link.open_count,
                         display_date(link.last_opened),
@@ -524,10 +748,11 @@ class RandomLinkApp:
                 self.tree.selection_set(selected)
                 self.tree.see(selected)
 
-        shown = len(self.filtered_links())
+        shown = len(filtered)
         total = len(self.links)
+        self.stats_var.set(library_stats(self.links, shown))
         self.set_status(f"{shown} shown / {total} saved in {DATA_FILE.name}")
-        self.update_actions()
+        self.update_actions(filtered)
 
     def selected_id(self) -> str | None:
         if not hasattr(self, "tree"):
@@ -578,28 +803,39 @@ class RandomLinkApp:
         self.show_current(link)
         self.url_var.set(link.url)
         self.title_var.set(link.title)
+        self.channel_var.set(link.channel)
         self.tags_var.set(", ".join(link.tags))
         self.update_actions()
 
-    def update_actions(self) -> None:
+    def update_actions(self, filtered: list[VideoLink] | None = None) -> None:
         has_current = self.current_link() is not None
         has_selected = self.selected_link() is not None
-        has_filtered = bool(self.filtered_links())
+        has_filtered = bool(filtered if filtered is not None else self.filtered_links())
 
         self.open_button.state(["!disabled"] if has_current else ["disabled"])
         self.copy_button.state(["!disabled"] if has_current else ["disabled"])
         self.favorite_check.state(["!disabled"] if has_current else ["disabled"])
         self.random_button.state(["!disabled"] if has_filtered else ["disabled"])
         self.delete_button.state(["!disabled"] if has_selected else ["disabled"])
+        self.enrich_button.state(["!disabled"] if has_selected else ["disabled"])
 
     def clear_form(self) -> None:
         self.url_var.set("")
         self.title_var.set("")
+        self.channel_var.set("")
         self.tags_var.set("")
         if self.tree.selection():
             self.tree.selection_remove(self.tree.selection())
         self.update_actions()
         self.focus_url()
+
+    def handle_enter(self, event: tk.Event) -> None:
+        focus = self.root.focus_get()
+        if focus in {self.url_entry, self.search_entry}:
+            self.save_form() if focus == self.url_entry else self.pick_random()
+            return
+        if focus == self.tree:
+            self.open_current()
 
     def save_form(self) -> None:
         try:
