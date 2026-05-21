@@ -92,6 +92,7 @@ venv.bak/
 
 # Local app data and retired Google API credentials
 links.json
+backups/
 creds.json
 
 # Spyder project settings

@@ -1,0 +1,1753 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-21T20:20:00Z",
+  "links": [
+    {
+      "url": "https://www.youtube.com/watch?v=TYhNHX372ek",
+      "title": "The Uncomfortable Truth About Ozempic (Updated Version)",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=DfB2qYJqAkA",
+      "title": "Where Did the Antimatter Go?",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=6Dj5ufzrZ78",
+      "title": "Could Humans Evolve Flight?",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Xr2yp8JA9LU",
+      "title": "How many batteries would it take to power a human?",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "engineering"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zXvygWE3Ess",
+      "title": "How Alpha Particles Can Break Computer Chips",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "engineering"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=7F4pY8Td9QQ",
+      "title": "The Surprising Genius Of Sewing Machines",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "science",
+        "engineering"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=QLu_ZsRc_G0",
+      "title": "Covering 10 points, a surprisingly tricky puzzle.",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math",
+        "visual-explanation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Y7ImxZ_YhJk",
+      "title": "Escher's most mind-bending piece",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math",
+        "visual-explanation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4h5BEALuh44",
+      "title": "The subset sum puzzle",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math",
+        "visual-explanation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UiX4CFIiegM",
+      "title": "Red & Black Knights (extraordinary result) - Numberphile",
+      "channel": "Numberphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=SAtFZPtbMpI",
+      "title": "Entirely Ridiculously Big Numbers - Numberphile",
+      "channel": "Numberphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UfP83M07s24",
+      "title": "Mathematician Attempts Art - Numberphile",
+      "channel": "Numberphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=E3hvLz717zM",
+      "title": "Why Multi-Threaded Code Can Sometimes Misbehave (Weak Memory Concurrency) - Computerphile",
+      "channel": "Computerphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=7WEewUVQabU",
+      "title": "Hacking on the PDP1 Raspberry Pi Emulator - Computerphile",
+      "channel": "Computerphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=G1VgXqKZMZE",
+      "title": "Finding Hardware Bugs - Computerphile",
+      "channel": "Computerphile",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lT_QAkL6lj0",
+      "title": "Where do rocks come from?: Crash Course Geology #6",
+      "channel": "CrashCourse",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=AE1D7VtLcFE",
+      "title": "Crash Course Hosts Read Comments",
+      "channel": "CrashCourse",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cf11w2n9_oA",
+      "title": "The 2026 Crash Course Coin is available now only until May 29!",
+      "channel": "CrashCourse",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4lKbesI5eLI",
+      "title": "LaTeX Course for Beginners",
+      "channel": "freeCodeCamp.org",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "programming",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=pQMvO_ssdcA",
+      "title": "How many devs actually use that whole million-token context window...?",
+      "channel": "freeCodeCamp.org",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "programming",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1SKV4B_WPkg",
+      "title": "Why did the dev go broke?",
+      "channel": "freeCodeCamp.org",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "programming",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=uBwkMc1llmM",
+      "title": "The incredible engineering of Venice - Stephanie H. Smith",
+      "channel": "TED-Ed",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=gePOX4nbMU4",
+      "title": "Why is getting bitten by a rabid animal so dangerous? - Charles Rupprecht",
+      "channel": "TED-Ed",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HdieAFhQtPo",
+      "title": "You’re invited to the masquerade. Do you dare attend? - Iseult Gillespie",
+      "channel": "TED-Ed",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=s2jm2Z22ibA",
+      "title": "Coding Challenge 188: Voice Chatbot",
+      "channel": "The Coding Train",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "creative-coding",
+        "programming"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=d0GgzjCFWq0",
+      "title": "What the font?!?!",
+      "channel": "The Coding Train",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "creative-coding",
+        "programming"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=KR61bXsPlLU",
+      "title": "What is Transformers.js?",
+      "channel": "The Coding Train",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "creative-coding",
+        "programming"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=V2lEgMHF2Fo",
+      "title": "I should not have liked the world’s first smart home.",
+      "channel": "Tom Scott",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=aZRXpmnys7I",
+      "title": "If you found candy with my name in it, here's why.",
+      "channel": "Tom Scott",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cMYYcddinkE",
+      "title": "Hello from inside a tiny boat.",
+      "channel": "Tom Scott",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HSRmfNDk87s",
+      "title": "Runway Numbers Explained",
+      "channel": "CGP Grey",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=58SrtQNt4YE",
+      "title": "Nickels Cost More to Make Than They're Worth",
+      "channel": "CGP Grey",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=n1KgxqEQn0A",
+      "title": "Is The Penny *Finally* Dead?",
+      "channel": "CGP Grey",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=WtQ64nSbdY4",
+      "title": "What Everyone Sees... But I Don't (The Johari Window) - Smarter Every Day 314",
+      "channel": "SmarterEveryDay",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-0JKHuzJ67A",
+      "title": "Everything About Disc Golf Aerodynamics - Smarter Every Day 313",
+      "channel": "SmarterEveryDay",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=XwBZx1cXEdM",
+      "title": "Why Do Spinning Things Do This? - Smarter Every Day 312",
+      "channel": "SmarterEveryDay",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=l2rCI0Sos0s",
+      "title": "Why was The Late Show with Stephen Colbert cut?",
+      "channel": "Vox",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "culture",
+        "explainer"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mLPT5qZDVsQ",
+      "title": "We don’t know where Ebola is going — or where it began",
+      "channel": "Vox",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "culture",
+        "explainer"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cf48eRXPRYE",
+      "title": "The Republican party and psychedelics",
+      "channel": "Vox",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "culture",
+        "explainer"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=bnjubyUtOEc",
+      "title": "Interstellar Space Travel (Full Episode) | Startalk | National Geographic",
+      "channel": "National Geographic",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "nature",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=CM6_MJlBWz8",
+      "title": "Best Of The World With Antoni Porowski | Official Trailer | National Geographic",
+      "channel": "National Geographic",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "nature",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Qn9kWK6AqIA",
+      "title": "Secret Sunken Cities (Full Episode) | Drain the Oceans Compilations | National Geographic",
+      "channel": "National Geographic",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "nature",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ZdwIokL0P_U",
+      "title": "Lecture 4: Rationalizability",
+      "channel": "MIT OpenCourseWare",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "lecture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=b7BAHSV1EBo",
+      "title": "Lecture 3: Dominance",
+      "channel": "MIT OpenCourseWare",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "lecture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=mu0X3GpDAy8",
+      "title": "Lecture 19: Revenue Equivalence",
+      "channel": "MIT OpenCourseWare",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "education",
+        "lecture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=jovm4R-HTaM",
+      "title": "Primitive Technology: Mud mortar experiment and firing roof tiles",
+      "channel": "Primitive Technology",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "craft"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=L-iwzJOG8fA",
+      "title": "Primitive Technology: Roof tiles dried by underfloor heating",
+      "channel": "Primitive Technology",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "craft"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UkQfhwrlfJ4",
+      "title": "Primitive Technology: Hut with Underfloor Heating (Ondol/Hypocaust)",
+      "channel": "Primitive Technology",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "craft"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=NnvIwG0S8WE",
+      "title": "Tennis Ball Cannon vs Human Strength",
+      "channel": "Mark Rober",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=IEJALLQFmDs",
+      "title": "You’re Breathing Dinosaur Breath!",
+      "channel": "Mark Rober",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=6VCyrdMLrcY",
+      "title": "Engineering a $1 Cup of Lemonade #AdobePartner",
+      "channel": "Mark Rober",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "engineering",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=VIE2Ri2DQJg",
+      "title": "Why Fitbit Air Could Be Huge",
+      "channel": "Marques Brownlee",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "technology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=eFeDpUVEy48",
+      "title": "“The Biggest Android Update Ever”",
+      "channel": "Marques Brownlee",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "technology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=coX4duwUCpw",
+      "title": "Why New Smartphone Cameras Feel Worse",
+      "channel": "Marques Brownlee",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "technology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=uFI5WpK2sgg",
+      "title": "Shouting at Stars: A History of Interstellar Messages",
+      "channel": "LEMMiNO",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "documentary",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=jVpsLMCIB0Y",
+      "title": "The Unbreakable Kryptos Code",
+      "channel": "LEMMiNO",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "documentary",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=nx4V9Uh_FW0",
+      "title": "5,000,000 - Q&A",
+      "channel": "LEMMiNO",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "documentary",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=YuYDi5dh_70",
+      "title": "Why didn't Germany stop expanding in 1939? (Short Animated Documentary)",
+      "channel": "History Matters",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=_W91vYZETPM",
+      "title": "Why didn't the other Central Powers have to pay reparations too? (Short Animated Documentary)",
+      "channel": "History Matters",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ynhI5fZ_Uhk",
+      "title": "Why didn't the Boers ever unite against the British? (Short Animated Documentary)",
+      "channel": "History Matters",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=1BVJzaXv3rk",
+      "title": "The Second Punic War - OverSimplified (Part 3)",
+      "channel": "OverSimplified",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Q-nWA0WeF98",
+      "title": "The Second Punic War - OverSimplified (Part 2)",
+      "channel": "OverSimplified",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lsbcN9-jU1Y",
+      "title": "The Second Punic War - OverSimplified (Part 1)",
+      "channel": "OverSimplified",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hiyCTfSoH9Q",
+      "title": "Francis Bacon: Great Art Explained: Study after Velázquez",
+      "channel": "Great Art Explained",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "arts",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=_PEMXQeRD0s",
+      "title": "The Red Studio by Matisse (1911)",
+      "channel": "Great Art Explained",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "arts",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=DKTMkLZ_rr0",
+      "title": "Tamara de Lempicka: Tamara in the Green Bugatti: Great Art Explained",
+      "channel": "Great Art Explained",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "arts",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=2OotD-iJO80",
+      "title": "RaiNao: Tiny Desk Concert",
+      "channel": "NPR Music",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "music",
+        "arts"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Cg6E3lppn0I",
+      "title": "Vince Gill: Tiny Desk Concert",
+      "channel": "NPR Music",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "music",
+        "arts"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=LVJpKUaPO4I",
+      "title": "Don Was and the Pan-Detroit Ensemble: Tiny Desk Concert",
+      "channel": "NPR Music",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "music",
+        "arts"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=udEBWcciYiY",
+      "title": "NASA's Artemis II Crew Visits the U.S. Capitol",
+      "channel": "NASA",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Nyki6O1oxIg",
+      "title": "Moon Base News Conference (May 26, 2026)",
+      "channel": "NASA",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=MiNbfSt3JzY",
+      "title": "NASA's SpaceX 34th Commercial Resupply Services Rendezvous and Docking",
+      "channel": "NASA",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=FMdrD_jcYgE",
+      "title": "We Found Galaxies Too Old for the Universe",
+      "channel": "PBS Space Time",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "physics"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qQmfXVE6W-I",
+      "title": "Earth’s Core Should Be Impossible. A New State of Matter Explains It.",
+      "channel": "PBS Space Time",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "physics"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dZaqLgezRNE",
+      "title": "Something Disturbing Happens When You Solve Einstein's Equations This Way",
+      "channel": "PBS Space Time",
+      "tags": [
+        "starter",
+        "fresh-feed",
+        "space",
+        "physics"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "title": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)",
+      "channel": "Rick Astley",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "internet-culture",
+        "music"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+      "title": "PSY - GANGNAM STYLE(강남스타일) M/V",
+      "channel": "officialpsy",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "internet-culture",
+        "music"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+      "title": "Queen – Bohemian Rhapsody (Official Video Remastered)",
+      "channel": "Queen Official",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "arts",
+        "music",
+        "classic"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=J---aiyznGQ",
+      "title": "Keyboard Cat! - THE ORIGINAL!",
+      "channel": "Keyboard Cat!",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "internet-culture",
+        "meme"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=MtN1YnoL46Q",
+      "title": "The Duck Song",
+      "channel": "forrestfire101",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "animation",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=EIyixC9NsLI",
+      "title": "Badgers : animated music video : MrWeebl",
+      "channel": "Weebl's Stuff",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "animation",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=2Z4m4lnjxkY",
+      "title": "Trololo Sing Along!",
+      "channel": "Skip Everling",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "music",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=z9Uz1icjwrM",
+      "title": "Taking the Hobbits to Isengard - 10 HOURS",
+      "channel": "eKolyable",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "remix",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Tx1XIm6q4r4",
+      "title": "Potter Puppet Pals: The Mysterious Ticking Noise",
+      "channel": "Neil Cicierega",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "comedy",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+      "title": "Me at the zoo",
+      "channel": "jawed",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "youtube-history",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OQSNhk5ICTI",
+      "title": "Yosemitebear Mountain Double Rainbow 1-8-10",
+      "channel": "Yosemitebear62",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "classic",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=iCvmsMzlF7o",
+      "title": "The Power of Vulnerability | Brené Brown | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=arj7oStGLkU",
+      "title": "Inside the Mind of a Master Procrastinator | Tim Urban | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Ks-_Mh1QhMc",
+      "title": "Your Body Language May Shape Who You Are | Amy Cuddy | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=eIho2S0ZahI",
+      "title": "How to Speak So That People Want to Listen | Julian Treasure | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "communication"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=8KkKuTCFvzI",
+      "title": "What Makes a Good Life? Lessons from the Longest Study on Happiness | Robert Waldinger | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=c0KYU2j0TM4",
+      "title": "The power of introverts | Susan Cain | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=R1vskiVDwl4",
+      "title": "Celeste Headlee: 10 ways to have a better conversation | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "communication"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=5MuIMqhT8DM",
+      "title": "Sleep Is Your Superpower | Matt Walker | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "health"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=5MgBikgcWnY",
+      "title": "The first 20 hours -- how to learn anything | Josh Kaufman | TEDxCSU",
+      "channel": "TEDx Talks",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "learning"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fxbCHn6gE3U",
+      "title": "The surprising habits of original thinkers | Adam Grant | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lyu7v7nWzfo",
+      "title": "Your Brain Hallucinates Your Conscious Reality | Anil Seth | TED",
+      "channel": "TED",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "neuroscience"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=gM95HHI4gLk",
+      "title": "Salman Khan TED Talk 2011 (from ted.com)",
+      "channel": "Khan Academy",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "computing"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=jbkSRLYSojo",
+      "title": "Hans Rosling's 200 Countries, 200 Years, 4 Minutes - The Joy of Stats - BBC",
+      "channel": "BBC",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "data",
+        "history",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=O5nskjZ_GoI",
+      "title": "Early Computing: Crash Course Computer Science #1",
+      "channel": "CrashCourse",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=x3c1ih2NJEg",
+      "title": "How does the INTERNET work? | ICT #2",
+      "channel": "Sabin Civil Engineering",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "engineering"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=cY4HiiFHO1o",
+      "title": "Traveling Salesman Problem | Dynamic Programming | Graph Theory",
+      "channel": "WilliamFiset",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "algorithms"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=JhHMJCUmq28",
+      "title": "Quantum Computers Explained – Limits of Human Technology",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=aircAruvnKk",
+      "title": "But what is a neural network? | Deep learning chapter 1",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "ai",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=IHZwWFHWa-w",
+      "title": "Gradient descent, how neural networks learn | Deep Learning Chapter 2",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "ai",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U",
+      "title": "Backpropagation, intuitively | Deep Learning Chapter 3",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "ai",
+        "math"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=spUNpyF58BY",
+      "title": "But what is the Fourier Transform? A visual introduction.",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "engineering"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM",
+      "title": "The essence of calculus",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=kjBOesZCoqc",
+      "title": "Essence of linear algebra preview",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HEfHFsfGXjs",
+      "title": "The most unexpected answer to a counting puzzle",
+      "channel": "3Blue1Brown",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ovJcsL7vyrk",
+      "title": "This equation will change how you see the world (the logistic map)",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OmJ-4B-mS-Y",
+      "title": "The Map of Mathematics",
+      "channel": "Domain of Science",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "math",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=P3RXtoYCW4M",
+      "title": "The Map of Chemistry",
+      "channel": "Domain of Science",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hOfRN0KihOU",
+      "title": "How Evolution works",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "biology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=sNhhvQGsMEc",
+      "title": "The Fermi Paradox — Where Are All The Aliens? (1/2)",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "space"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=e-P5IFTqB98",
+      "title": "Black Holes Explained – From Birth to Death",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "space"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zUyH3XhpLTo",
+      "title": "How to Understand What Black Holes Look Like",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "space"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=uD4izuDMUQA",
+      "title": "TIMELAPSE OF THE FUTURE: A Journey to the End of Time (4K)",
+      "channel": "melodysheep",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "space"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ZSt9tm3RoUU",
+      "title": "Our Story in 1 Minute",
+      "channel": "melodysheep",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "space"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UBVV8pch1dM",
+      "title": "The Science of Thinking",
+      "channel": "Veritasium",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "psychology"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=3MqYE2UuN24",
+      "title": "Is it Better to Walk or Run in the Rain?",
+      "channel": "minutephysics",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "physics"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=wJyUtbn0O5Y",
+      "title": "The Inner Life of the Cell Animation",
+      "channel": "XVIVO Scientific Animation",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "science",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=u6XAPnuFjJc",
+      "title": "RSA ANIMATE: Drive: The surprising truth about what motivates us",
+      "channel": "The RSA",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=8CrOL-ydFMI",
+      "title": "This Is Water - Full version-David Foster Wallace Commencement Speech",
+      "channel": "Lynn Skittle",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "philosophy"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=nJPERZDfyWc",
+      "title": "Everything is a Remix (Original Series)",
+      "channel": "Kirby Ferguson",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "arts",
+        "culture",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=xuCn8ux2gbs",
+      "title": "history of the entire world, i guess",
+      "channel": "bill wurtz",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "history",
+        "animation"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Yocja_N5s1I",
+      "title": "The Agricultural Revolution: Crash Course World History #1",
+      "channel": "CrashCourse",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "history",
+        "education"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ymI5Uv5cGU4",
+      "title": "History of the World: Every Year",
+      "channel": "Ollie Bye",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "history",
+        "maps"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PHe0bXAIuk0",
+      "title": "How The Economic Machine Works by Ray Dalio",
+      "channel": "Principles by Ray Dalio",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "economics"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=kYfNvmF0Bqw",
+      "title": "Steve Jobs Secrets of Life",
+      "channel": "Silicon Valley Historical Association",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "history"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=bk7McNUjWgw",
+      "title": "Flying Fish Picked Off From Above And Below | The Hunt | BBC Earth",
+      "channel": "BBC Earth",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "computing",
+        "internet-culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=MBRqu0YOH14",
+      "title": "Optimistic Nihilism",
+      "channel": "Kurzgesagt – In a Nutshell",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "philosophy",
+        "science"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lM02vNMRRB0",
+      "title": "7 HOUR 4K DRONE FILM: \"Earth from Above\" + Music by Nature Relaxation™ (Ambient AppleTV Style)",
+      "channel": "Nature Relaxation Films",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "nature",
+        "visual-arts"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=21j_OCNLuYg",
+      "title": "Life is easy. Why do we make it so hard? | Jon Jandai | TEDxDoiSuthep",
+      "channel": "TEDx Talks",
+      "tags": [
+        "starter",
+        "verified-oembed",
+        "education",
+        "culture"
+      ],
+      "favorite": false,
+      "added_at": "2026-05-21T20:20:00Z"
+    }
+  ]
+}

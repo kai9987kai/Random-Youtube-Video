@@ -4,6 +4,7 @@
     {
       "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "title": "Example YouTube video",
+      "channel": "Example Channel",
       "tags": ["example"],
       "favorite": false
     },
